@@ -1,0 +1,678 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cake Shop</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Fancybox CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"
+/>
+
+<!-- Fancybox JS -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: #fffaf4;
+    }
+
+    /* NAVBAR */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 60px;
+        background: #ffe7ce;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    nav .logo {
+        font-family: "Playfair Display";
+        font-size: 24px;
+        font-weight: 700;
+        color: #ff4d4d;
+    }
+    nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    nav a:hover {
+        color: #ff4d4d;
+    }
+
+    /* SECTIONS */
+    .section {
+        display: none;
+        padding: 60px 80px;
+    }
+    .active {
+        display: block;
+    }
+
+    /* HERO */
+    .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+     padding: 80px 60px;
+        background: #ffe7ce;
+    }
+
+ .hero2 img {
+        width: 1200px;
+    }
+ .hero2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 80px 60px;
+	
+      
+    }
+    .hero h1 {
+        font-family: "Playfair Display";
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+    .hero p {
+        width: 80%;
+        font-size: 15px;
+        line-height: 24px;
+        color: #444;
+    }
+
+.hero-left {
+    display: flex;
+    align-items: center;
+    gap: 90px;          /* Jarak antara logo & tulisan */
+}
+
+.hero-left img {
+    width: 170px;       /* Ukuran logo */
+    height: auto;
+}
+
+.hero-text {
+    margin-left: 20px;  /* Jarak tambahan jika dibutuhkan */
+}
+
+
+    .hero-buttons button {
+        padding: 12px 20px;
+        margin-right: 10px;
+        background: #ff4d4d;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .hero-buttons .read-btn {
+        background: white;
+        color: #ff4d4d;
+        border: 2px solid #ff4d4d;
+    }
+    .hero img {
+        width: 420px;
+    }
+
+
+
+    /* SPECIALS */
+    .specials-title {
+        text-align: center;
+        font-family: "Playfair Display";
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+    .specials-sub {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 15px;
+        color: #666;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+        gap: 25px;
+    }
+    .product-card {
+        background: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.08);
+    }
+    .product-card img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+    }
+    .order-btn {
+        margin-top: 15px;
+        padding: 10px 18px;
+        background: #ff4d4d;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    /* FOOTER */
+    footer {
+        margin-top: 60px;
+        padding: 20px;
+        text-align: center;
+        background: #ffe7ce;
+        color: #444;
+    }
+
+
+.cupcake-page {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.cupcake-gallery {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 25px;
+    padding: 20px;
+}
+
+.cupcake-gallery a img {
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cupcake-gallery a img:hover {
+    transform: scale(1.05);
+}
+
+.map-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+
+/* 3D Carousel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 280px;
+    margin: 60px auto;
+    perspective: 1000px;
+}
+
+.carousel-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.carousel-3d img {
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.4s ease;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.15);
+}
+
+.carousel-controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.carousel-controls a {
+    margin: 0 20px;
+    color: #ff4d4d;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+<script>
+function loadPage(page) {
+  fetch(page)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("content").innerHTML = html;
+    });
+}
+</script>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="logo">Umami Cakes</div>
+    <div class="links">
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('cupcake')">Cupcake</a>
+        <a onclick="showPage('location')">Location</a>
+       <a onclick="showPage('order')">Order</a>
+        <a onclick="showPage('contact')">Contact us</a>
+    </div>
+</nav>
+
+
+<!-- HOME PAGE -->
+<section id="home" class="section active">
+    <div class="hero">
+	<div class="hero-left">
+	<img src="logo dapur.png" style="width:180px; height:180px;">
+	</div>
+        <div class="hero-text">
+            <h1>Dapur Umami Cakes</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor sit amet lorem ipsum.</p>
+            <div class="hero-buttons">
+                <button class="read-btn">READ MORE</button>
+                <button>ORDER NOW</button>
+            </div>
+        </div>
+
+        <img src="headline cake.png">
+
+
+    </div>
+
+    <h2 class="specials-title">This Week’s Specials</h2>
+    <p class="specials-sub">Try our most popular signature cupcakes and taste the difference!</p>
+<div class="carousel-container">
+    <div class="carousel-3d" id="carousel3d">
+        <img src="easy_chocolate_cake_slice.webp">
+        <img src="Unicorn_Primary.webp">
+        <img src="23e.jpg">
+        <img src="chocolate-drip-cake-featured-image.jpg">
+        <img src="blush.png">
+    </div>
+</div>
+
+<div class="carousel-controls">
+    <a onclick="prev3d()">Previous</a>
+    <a onclick="next3d()">Next</a>
+</div>
+
+
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="head cake.png">
+            <h4>Choco Cream Cherry Milk</h4>
+            <p>$9.00</p>
+            <button class="order-btn">ORDER THIS</button>
+        </div>
+
+        <div class="product-card">
+            <img src="pngtree-strawberry-shortcake-food-isolated-on-transparent-background-png-image_21323883.png">
+            <h4>Shortscake Strawberry mini</h4>
+            <p>$9.00</p>
+            <button class="order-btn">ORDER THIS</button>
+        </div>
+
+        <div class="product-card">
+            <img src="blush.png">
+            <h4>Blushing Strawberry Cream</h4>
+            <p>$9.00</p>
+            <button class="order-btn">ORDER THIS</button>
+        </div>
+
+        <div class="product-card">
+            <img src="choco-rose-cake-free-png-download.png">
+            <h4>Mystery Rose Choco</h4>
+            <p>$9.00</p>
+            <button class="order-btn">ORDER THIS</button>
+        </div>
+    </div>
+
+  <div class="hero2">
+	
+
+        <img src="gavv.png">
+
+
+    </div>
+
+<div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.8179999675353!2d109.344875!3d-0.022961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwMDEnMjIuNyJTIDEwOcKwMjAnNDEuNiJF!5e0!3m2!1sid!2sid!4v1763436192589!5m2!1sid!2sid"
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+
+<!-- CUPCAKE PAGE -->
+<section id="cupcake" class="section cupcake-page">
+    <h1>Our Cupcakes</h1>
+    <p>Explore our delicious cupcake collection.</p>
+
+    <div class="cupcake-gallery">
+
+        <a data-fancybox="cupcakes" data-caption="Choco Cream Cherry Milk" href="moist-chocolate-cupcakes-5.jpg">
+            <img src="moist-chocolate-cupcakes-5.jpg">
+        </a>
+
+        <a data-fancybox="cupcakes" data-caption="Shortcake Strawberry Mini" href="Strawberry-Shortcake-1.jpg">
+            <img src="Strawberry-Shortcake-1.jpg">
+        </a>
+
+        <a data-fancybox="cupcakes" data-caption="Blushing Strawberry Cream" href="fresh-strawberry-lemonade-cake-12.webp">
+            <img src="fresh-strawberry-lemonade-cake-12.webp">
+        </a>
+
+        <a data-fancybox="cupcakes" data-caption="Rose Berry Choco" href="best-chocolate-berry-cake-scaled.webp">
+            <img src="best-chocolate-berry-cake-scaled.webp" alt="Rose Berry Choco">
+        </a>
+
+ <a data-fancybox="cupcakes" data-caption="Choco Cream Cherry Milk" href="Lemon-Cake-FINAL-10.webp">
+            <img src="Lemon-Cake-FINAL-10.webp">
+        </a>
+
+ <a data-fancybox="cupcakes" data-caption="Choco Cream Cherry Milk" href="Grape.jpg">
+            <img src="Grape.jpg">
+        </a>
+ 
+
+        <a data-fancybox="cupcakes" data-caption="Blushing Strawberry Cream" href="Cake2.webp">
+            <img src="Cake2.webp">
+        </a>
+
+        <a data-fancybox="cupcakes" data-caption="Rose Berry Choco" href="bdanish-pastry-dough-8.webp">
+            <img src="danish-pastry-dough-8.webp" alt="Rose Berry Choco">
+        </a>
+
+
+
+
+
+
+
+
+
+ 
+
+ <a data-fancybox="cupcakes" data-caption="Choco Cream Cherry Milk" href="Japanese-chiffon-swiss-cake-roll.jpg">
+            <img src="Japanese-chiffon-swiss-cake-roll.jpg">
+        </a>
+
+
+ 
+
+        <a data-fancybox="cupcakes" data-caption="Blushing Strawberry Cream" href="japanese-christmas-cake-025-1200x1799.webp">
+            <img src="japanese-christmas-cake-025-1200x1799.webp">
+        </a>
+
+        <a data-fancybox="cupcakes" data-caption="Rose Berry Choco" href="Simply-Recipes-Japanese-Cheesecake-LEAD-9-4834001585de444eb3408c66759640fe.jpg">
+            <img src="Simply-Recipes-Japanese-Cheesecake-LEAD-9-4834001585de444eb3408c66759640fe.jpg" alt="Rose Berry Choco">
+        </a>
+
+ <a data-fancybox="cupcakes" data-caption="Rose Berry Choco" href="dorayaki-red-bean-pancakes-1.webp">
+            <img src="dorayaki-red-bean-pancakes-1.webp" alt="Rose Berry Choco">
+        </a>
+    </div>
+
+</section>
+
+
+
+
+<!-- BLOG -->
+<section id="blog" class="section">
+    <h1>Blog</h1>
+    <p>Latest articles and baking news.</p>
+</section>
+
+<!-- ORDER PAGE -------------------------------------------------->
+<section id="order" class="section">
+
+<div class="order-page">
+  <h2>Form Order</h2>
+
+  <label>Nama:</label>
+  <input type="text" id="nama" placeholder="Masukkan nama">
+
+  <div id="pesanan-list">
+    <!-- Pesanan pertama -->
+    <div class="pesanan-item">
+      <label>Pilih Makanan:</label>
+      <select class="pilihan-makanan">
+        <option value="">-- pilih makanan --</option>
+        <option value="30000">Shortcake Strawberry (30.000)</option>
+        <option value="19000">Chocolate Cake (19.000)</option>
+        <option value="30300">Lemon Cake (30.300)</option>
+        <option value="12000">Cupcake (12.000)</option>
+        <option value="21000">Japanese Cake (21.000)</option>
+        <option value="32000">Italian Cake (32.000)</option>
+      </select>
+
+      <label>Harga:</label>
+      <input type="text" class="harga" readonly placeholder="0">
+    </div>
+  </div>
+
+  <button id="tambah-pesanan">+ Tambah Pesanan</button>
+
+  <label>Alamat:</label>
+  <input type="text" id="alamat" placeholder="Masukkan alamat">
+
+  <label>No Telpon:</label>
+  <input type="text" id="telepon" placeholder="Masukkan nomor telpon">
+
+  <button id="submit">Submit</button>
+
+  <!-- Hasil Invoice -->
+  <div id="invoice" style="margin-top:20px;"></div>
+</div>
+
+<style>
+  .order-page { 
+    width: 90%; 
+    max-width: 600px; 
+    margin: auto; 
+    padding: 20px; 
+    background: #fff; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .order-page input, .order-page select {
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 15px; 
+    border-radius: 8px; 
+    border: 1px solid #ccc;
+  }
+  #tambah-pesanan, #submit {
+    width: 100%; 
+    padding: 12px; 
+    background: #4CAF50; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    margin-bottom: 10px;
+  }
+  #tambah-pesanan { background: #2196F3; }
+  #invoice { 
+    padding: 15px; 
+    background: #f2f2f2; 
+    border-radius: 10px; 
+  }
+</style>
+
+<script>
+  // Update harga berdasarkan pilihan select
+  function updateHarga() {
+    document.querySelectorAll(".pesanan-item").forEach(item => {
+      let select = item.querySelector(".pilihan-makanan");
+      let hargaBox = item.querySelector(".harga");
+      hargaBox.value = select.value ? Number(select.value).toLocaleString() : "";
+    });
+  }
+
+  document.addEventListener("change", function(e) {
+    if (e.target.classList.contains("pilihan-makanan")) {
+      updateHarga();
+    }
+  });
+
+  // Tambah pesanan baru
+  document.getElementById("tambah-pesanan").addEventListener("click", () => {
+    let clone = document.querySelector(".pesanan-item").cloneNode(true);
+    clone.querySelector(".pilihan-makanan").value = "";
+    clone.querySelector(".harga").value = "";
+    document.getElementById("pesanan-list").appendChild(clone);
+  });
+
+  // Submit
+  document.getElementById("submit").addEventListener("click", () => {
+    let nama = document.getElementById("nama").value;
+    let alamat = document.getElementById("alamat").value;
+    let telepon = document.getElementById("telepon").value;
+
+    let semuaSelect = document.querySelectorAll(".pilihan-makanan");
+    let semuaHarga = document.querySelectorAll(".harga");
+
+    // CEK VALIDASI
+    if (!nama || !alamat || !telepon) {
+      alert("Isi form yang belum terisi");
+      return;
+    }
+
+    for (let i = 0; i < semuaSelect.length; i++) {
+      if (semuaSelect[i].value === "") {
+        alert("Ada pesanan yang belum dipilih");
+        return;
+      }
+    }
+
+    // Jika lolos validasi → tampilkan invoice
+    let invoiceText = `<h3>Pesanan Anda</h3>`;
+    let total = 0;
+
+    semuaSelect.forEach((item, index) => {
+      let harga = Number(item.value);
+      total += harga;
+
+      invoiceText += `
+        ${index + 1}. ${item.options[item.selectedIndex].text}  
+        <br>Harga: Rp ${harga.toLocaleString()} <br><br>
+      `;
+    });
+
+    invoiceText += `<h3>Total Pembayaran: Rp ${total.toLocaleString()}</h3>`;
+    invoiceText += `<p>Pesanan anda akan dikirim setelah anda membayar.</p>`;
+    invoiceText += `<p>Silahkan Transfer ke Nomor Rekening Berikut : 183478347284 Bank tidak Mandiri . A.n Dapur Umami.</p>`;
+    document.getElementById("invoice").innerHTML = invoiceText;
+  });
+</script>
+
+</section>
+
+<!------- ORDER PAGE----------------------------------------------->
+<!-- CONTACT -->
+<section id="contact" class="section">
+    <h1>Contact Us</h1>
+    <p>Email: info@cakeshop.com</p>
+     <p>No HP: 082335343</p>
+</section>
+
+
+<!-- LOCATION PAGE -->
+<section id="location" class="section">
+    <h1>Location</h1>
+    <p>Kami berlokasi di Pontianak</p>
+
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.8179999675353!2d109.344875!3d-0.022961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwMDEnMjIuNyJTIDEwOcKwMjAnNDEuNiJF!5e0!3m2!1sid!2sid!4v1763436192589!5m2!1sid!2sid"
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+
+
+
+<footer>© 2025 Umami Cakes — All Rights Reserved</footer>
+
+<script>
+function showPage(pageId) {
+    const sections = document.querySelectorAll(".section");
+    sections.forEach(sec => sec.classList.remove("active"));
+    document.getElementById(pageId).classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+
+<script>
+let index3D = 0;
+const items3D = document.querySelectorAll("#carousel3d img");
+
+function update3D() {
+    items3D.forEach((item, i) => {
+        const position = i - index3D;
+        const absPos = Math.abs(position);
+
+        if (position === 0) {
+            item.style.transform = "translate(-50%, -50%) scale(1.2)";
+            item.style.opacity = "1";
+            item.style.zIndex = "5";
+        } else {
+            item.style.transform =
+                `translate(calc(-50% + ${position * 180}px), -50%) scale(${1 - absPos * 0.1})`;
+            item.style.opacity = "0.4";
+            item.style.zIndex = 5 - absPos;
+        }
+    });
+}
+
+function next3d() {
+    index3D = (index3D + 1) % items3D.length;
+    update3D();
+}
+
+function prev3d() {
+    index3D = (index3D - 1 + items3D.length) % items3D.length;
+    update3D();
+}
+
+update3D();
+</script>
+
+</body>
+</html>
